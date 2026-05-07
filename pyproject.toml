@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "experiments-2026-TCD-uncertainty-based-clustered-fl"
+name = "experiments-2026-uncertainty-based-clustered-fl"
 version = "0.1.0"
 description = ""
 authors = ["Davide Domini <davide.domini@unibo.it>"]
@@ -9,6 +9,13 @@ packages = [{ include = "src" }]
 
 [tool.poetry.dependencies]
 python = ">=3.12,<3.13"
+phyelds = "^6.0.0"
+torch = "^2.11.0"
+torchvision = "^0.26.0"
+matplotlib = "^3.10.9"
+pandas = ">=2.2.3,<3.0.0"
+seaborn = "^0.13.2"
+numpy = "^2.4.4"
 
 
 [build-system]
