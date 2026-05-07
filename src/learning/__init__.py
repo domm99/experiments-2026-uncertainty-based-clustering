@@ -27,6 +27,7 @@ __all__ = [
     "partition_dataset",
     "set_seed",
     "train_rnd_on_dataset",
+    "load_rnd_from_weights",
 ]
 
 
@@ -611,6 +612,18 @@ def create_target_rnd(
     target_network.eval()
     return target_network.to(_resolve_torch_device(device))
 
+def load_rnd_from_weights(w, dataset, target_network, seed):
+    image_shape = _validate_rnd_dataset(dataset)
+    set_seed(seed)
+    rnd_model = RNDModel(
+        input_channels=image_shape[0],
+        target_network=target_network,
+        embedding_dim=64,
+        predictor_channels=(4, 8),
+        spatial_pool_size=4,
+    )
+    rnd_model.load_state_dict(w)
+    return rnd_model
 
 def train_rnd_on_dataset(
     dataset: Dataset,
