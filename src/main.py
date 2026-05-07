@@ -32,10 +32,14 @@ def initialize_target_rnd(dataset, random_seed: int, device: str):
 def run_simulation(dataset_name: str, number_of_areas: int, device: str, random_seed: int) -> None:
     simulator = Simulator()
     simulator.environment.set_neighborhood_function(radius_neighborhood(1.12))
-    deformed_lattice(simulator, 7, 7, 1, 0.01)
+    deformed_lattice(simulator, 4, 4, 1, 0.01)
 
     devices = len(simulator.environment.nodes.values())
     mapping_devices_area = distribute_nodes_spatially(devices, number_of_areas)
+
+    print(mapping_devices_area)
+    print()
+    print()
 
     train_data, test_data = download_dataset(dataset_name)
     area_datasets = partition_dataset(train_data, number_of_areas, random_seed)
@@ -78,18 +82,18 @@ def run_simulation(dataset_name: str, number_of_areas: int, device: str, random_
         RenderConfig(
             effects=[DrawEdges(), CustomDrawNodes(color_from="result")],
             mode=RenderMode.SAVE,
-            save_as=f"export/seed-{random_seed}_areas-{number_of_areas}dataset-{dataset_name}.mp4",
+            save_as=f"export/seed-{random_seed}_areas-{number_of_areas}_dataset-{dataset_name}.mp4",
             dt=1.0
         )
     )
 
-    simulator.run(3)
+    simulator.run(5)
 
 if __name__ == '__main__':
 
-    datasets = ['CIFAR10', 'CIFAR100', 'MNIST', 'FashionMNIST', 'EMNIST']
+    datasets = ['CIFAR10']#['CIFAR10', 'CIFAR100', 'MNIST', 'FashionMNIST', 'EMNIST']
     seeds = range(1)
-    areas = [3, 5, 9]
+    areas = [5] #[3, 5, 9]
     device = get_current_device()
 
     for seed in seeds:
