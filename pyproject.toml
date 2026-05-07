@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "experiments-2025-TCD-marl-neighbor-TL"
+version = "0.1.0"
+description = ""
+authors = ["Davide Domini <davide.domini@unibo.it>"]
+readme = ""
+
+packages = [{ include = "src" }]
+
+[tool.poetry.dependencies]
+python = ">=3.12,<3.13"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

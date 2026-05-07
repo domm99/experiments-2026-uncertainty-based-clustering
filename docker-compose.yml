@@ -1,0 +1,47 @@
+services:
+
+  experiment-spread-no-transfer:
+    hostname: spread-no-transfer
+    image: davidedomini99/experiments-2025-tcd-marl-neighbor-tl:0.1.2
+    volumes:
+      - davide.domini-volume:/experiment/data
+    environment:
+      DATA_OWNER: 1000:1000
+      LEARNING_HYPERPARAMETERS: |
+        all:
+          environment: SimpleSpread
+          transfer_enabled: False
+          restricted_communication: False
+          max_seed: 3
+
+  experiment-spread-transfer-all:
+    hostname: spread-transfer-all
+    image: davidedomini99/experiments-2025-tcd-marl-neighbor-tl:0.1.2
+    volumes:
+      - davide.domini-volume:/experiment/data
+    environment:
+      DATA_OWNER: 1000:1000
+      LEARNING_HYPERPARAMETERS: |
+        all:
+          environment: SimpleSpread
+          transfer_enabled: True
+          restricted_communication: False
+          max_seed: 3
+
+  experiment-spread-transfer-restr:
+    hostname: spread-transfer-restr
+    image: davidedomini99/experiments-2025-tcd-marl-neighbor-tl:0.1.2
+    volumes:
+      - davide.domini-volume:/experiment/data
+    environment:
+      DATA_OWNER: 1000:1000
+      LEARNING_HYPERPARAMETERS: |
+        all:
+          environment: SimpleSpread
+          transfer_enabled: True
+          restricted_communication: True
+          max_seed: 3
+
+volumes:
+  davide.domini-volume:
+    external: true
